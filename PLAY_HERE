@@ -1,0 +1,55 @@
+import random
+from art import logo
+from replit import clear
+high = 0
+
+from game_data import data
+from art import vs
+B = random.choice(data)
+Score = 0
+Scontinue = True
+while Scontinue:
+    print(f"You are right your current score is {Score}")
+    A = B
+    B = random.choice(data)
+    
+    name = A["name"]
+    descr = A["description"]
+    contry = A["country"]
+    followerA = A["follower_count"]
+    SA = print(f"{name}, {descr}, {contry}, {followerA}")
+
+    print(vs)
+
+    
+    nameB = B["name"]
+    descr = B["description"]
+    contry = B["country"]
+    followerB = B["follower_count"]
+    SB = print(f"{nameB}, {descr}, {contry}, {followerB}")
+    Choose = input(
+        "Choose which person has more follower in instagram. Type 'A' or 'B'. "
+    ).lower()
+
+    def check_ans(Choose, followerA, followerB):
+        if followerA > followerB:
+            return Choose == "a"
+        else:
+            return Choose == "b"
+
+    if A == B:
+        B = random.choice(data)
+
+    
+    is_true = check_ans(Choose, followerA, followerB)
+    clear()
+    print(logo)   
+   
+    if is_true:
+        Score += 1
+        print("Good going!")
+        
+    else:
+        Scontinue = False
+        print(f"Sorry you have to restart your game. Best of luck.")
+      
